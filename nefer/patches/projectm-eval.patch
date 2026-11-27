@@ -1,0 +1,45 @@
+diff --git a/projectm-eval/TreeFunctions.c b/projectm-eval/TreeFunctions.c
+index ddd1d82..27cc95a 100644
+--- a/projectm-eval/TreeFunctions.c
++++ b/projectm-eval/TreeFunctions.c
+@@ -152,6 +152,14 @@ void prjm_eval_intrinsic_functions(prjm_eval_intrinsic_function_list_ptr list, u
+     *list = intrinsic_function_table;
+ }
+ 
++static uint32_t mt[N]; /* the array for the state vector  */
++static int32_t mti; /* mti==0 means mt[N] is not initialized */
++
++void projectm_eval_reset_rand(void)
++{
++    mti = 0;
++}
++
+ /* This is Milkdrop's original rand() implementation. */
+ static uint32_t prjm_eval_genrand_int32(void)
+ {
+@@ -159,9 +167,6 @@ static uint32_t prjm_eval_genrand_int32(void)
+     static uint32_t mag01[2] = { 0x0UL, MATRIX_A };
+     /* mag01[x] = x * MATRIX_A  for x=0,1 */
+ 
+-    static uint32_t mt[N]; /* the array for the state vector  */
+-    static int32_t mti; /* mti==N+1 means mt[N] is not initialized */
+-
+ 
+     if (!mti)
+     {
+diff --git a/projectm-eval/api/projectm-eval.h b/projectm-eval/api/projectm-eval.h
+index ab90e51..c919ace 100644
+--- a/projectm-eval/api/projectm-eval.h
++++ b/projectm-eval/api/projectm-eval.h
+@@ -161,6 +161,11 @@ PRJM_EVAL_F projectm_eval_code_execute(struct projectm_eval_code* code_handle);
+  */
+ const char* projectm_eval_get_error(struct projectm_eval_context* ctx, int* line, int* column);
+ 
++/**
++ * @brief Restarts the rand() sequence from its fixed seed, so the same code gives the same numbers again.
++ */
++void projectm_eval_reset_rand(void);
++
+ #ifdef __cplusplus
+ };
+ #endif
