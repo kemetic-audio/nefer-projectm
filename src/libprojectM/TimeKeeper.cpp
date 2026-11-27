@@ -12,6 +12,7 @@ TimeKeeper::TimeKeeper(double presetDuration, double smoothDuration, double hard
     , m_hardCutDuration(hardcutDuration)
 {
     UpdateTimers();
+    m_currentTime = 0.0;
 }
 
 void TimeKeeper::SetFrameTime(double secondsSinceStart)

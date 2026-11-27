@@ -21,6 +21,8 @@
 
 #include "ProjectM.hpp"
 
+#include <cstdlib>
+
 #include "Logging.hpp"
 #include "Preset.hpp"
 #include "PresetFactoryManager.hpp"
@@ -59,6 +61,7 @@ void ProjectM::PresetSwitchFailedEvent(const std::string&, const std::string&) c
 
 void ProjectM::LoadPresetFile(const std::string& presetFilename, bool smoothTransition)
 {
+    std::srand(0x52616e64U);
     try
     {
         m_textureManager->PurgeTextures();
@@ -73,6 +76,7 @@ void ProjectM::LoadPresetFile(const std::string& presetFilename, bool smoothTran
 
 void ProjectM::LoadPresetData(std::istream& presetData, bool smoothTransition)
 {
+    std::srand(0x52616e64U);
     try
     {
         m_textureManager->PurgeTextures();

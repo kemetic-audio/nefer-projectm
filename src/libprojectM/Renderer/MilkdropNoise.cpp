@@ -53,7 +53,7 @@ auto MilkdropNoise::GetPreferredInternalFormat() -> int
 
 auto MilkdropNoise::generate2D(int size, int zoomFactor) -> std::vector<uint32_t>
 {
-    uint32_t randomSeed = static_cast<uint32_t>(std::chrono::system_clock::now().time_since_epoch().count());
+    uint32_t randomSeed = 0x4e6f6973U;
     std::default_random_engine randomGenerator(randomSeed);
     std::uniform_int_distribution<int> randomDistribution(0, INT32_MAX);
 
@@ -140,7 +140,7 @@ auto MilkdropNoise::generate2D(int size, int zoomFactor) -> std::vector<uint32_t
 
 auto MilkdropNoise::generate3D(int size, int zoomFactor) -> std::vector<uint32_t>
 {
-    uint32_t randomSeed = static_cast<uint32_t>(std::chrono::system_clock::now().time_since_epoch().count());
+    uint32_t randomSeed = 0x4e6f6973U;
     std::default_random_engine randomGenerator(randomSeed);
     std::uniform_int_distribution<int> randomDistribution(0, INT32_MAX);
 

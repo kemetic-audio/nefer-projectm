@@ -39,6 +39,7 @@ MilkdropPreset::MilkdropPreset(const std::string& absoluteFilePath)
     , m_darkenCenter(m_state)
     , m_border(m_state)
 {
+    projectm_eval_reset_rand();
     Load(absoluteFilePath);
 }
 
@@ -50,6 +51,7 @@ MilkdropPreset::MilkdropPreset(std::istream& presetData)
     , m_darkenCenter(m_state)
     , m_border(m_state)
 {
+    projectm_eval_reset_rand();
     Load(presetData);
 }
 

@@ -284,8 +284,7 @@ auto TextureManager::GetRandomTexture(const std::string& randomName) -> TextureS
 {
     std::string selectedFilename;
 
-    std::random_device rndDevice;
-    std::default_random_engine rndEngine(rndDevice());
+    std::default_random_engine rndEngine(0x54657875U);
 
     ScanTextures();
 
