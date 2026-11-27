@@ -152,15 +152,20 @@ void prjm_eval_intrinsic_functions(prjm_eval_intrinsic_function_list_ptr list, u
     *list = intrinsic_function_table;
 }
 
+static uint32_t mt[N]; /* the array for the state vector  */
+static int32_t mti; /* mti==0 means mt[N] is not initialized */
+
+void projectm_eval_reset_rand(void)
+{
+    mti = 0;
+}
+
 /* This is Milkdrop's original rand() implementation. */
 static uint32_t prjm_eval_genrand_int32(void)
 {
     uint32_t y;
     static uint32_t mag01[2] = { 0x0UL, MATRIX_A };
     /* mag01[x] = x * MATRIX_A  for x=0,1 */
-
-    static uint32_t mt[N]; /* the array for the state vector  */
-    static int32_t mti; /* mti==N+1 means mt[N] is not initialized */
 
 
     if (!mti)

@@ -161,6 +161,11 @@ PRJM_EVAL_F projectm_eval_code_execute(struct projectm_eval_code* code_handle);
  */
 const char* projectm_eval_get_error(struct projectm_eval_context* ctx, int* line, int* column);
 
+/**
+ * @brief Restarts the rand() sequence from its fixed seed, so the same code gives the same numbers again.
+ */
+void projectm_eval_reset_rand(void);
+
 #ifdef __cplusplus
 };
 #endif
